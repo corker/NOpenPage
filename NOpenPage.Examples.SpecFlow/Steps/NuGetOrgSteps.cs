@@ -4,7 +4,7 @@ using TechTalk.SpecFlow;
 namespace NOpenPage.Examples.SpecFlow.Steps
 {
     [Binding]
-    public class GoogleSearchSteps
+    public class NuGetOrgSteps
     {
         [Given(@"I have opened a nuget home page")]
         public void GivenIHaveOpenedANugetHomePage()

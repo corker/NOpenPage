@@ -58,7 +58,7 @@
     <Compile Include="Pages\NuGetOrg\SearchPanel.cs" />
     <Compile Include="Pages\NuGetOrg\SearchResultList.cs" />
     <Compile Include="Pages\NuGetOrg\SearchResultListItem.cs" />
-    <Compile Include="Steps\GoogleSearchSteps.cs" />
+    <Compile Include="Steps\NuGetOrgSteps.cs" />
     <Compile Include="Steps\SharedSteps.cs" />
     <Compile Include="Features\NuGetSearch.feature.cs">
       <AutoGen>True</AutoGen>

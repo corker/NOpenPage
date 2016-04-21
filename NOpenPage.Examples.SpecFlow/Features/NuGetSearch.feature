@@ -1,4 +1,4 @@
-﻿Feature: GoogleSearch
+﻿Feature: NuGetOrgSearch
 	Let's click through the nuget home page to provide a simple example of NOpenPage usage.
 
 Scenario: Click through the nuget home page
