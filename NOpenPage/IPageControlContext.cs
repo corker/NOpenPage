@@ -6,6 +6,6 @@ namespace NOpenPage
 {
     public interface IPageControlContext
     {
-        IPageControlContextImpl GetImpl(Func<ISearchContext, IWebElement> provider);
+        IPageControlContextImpl GetImpl(WebElementProvider provider, Type type);
     }
 }

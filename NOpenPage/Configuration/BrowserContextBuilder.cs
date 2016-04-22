@@ -1,34 +1,43 @@
 ﻿using System;
-using OpenQA.Selenium;
 
 namespace NOpenPage.Configuration
 {
     public class BrowserContextBuilder : IBrowserConfiguration
     {
-        private Func<IWebDriver> _driverResolver;
-        private Func<ISearchContext, Func<ISearchContext, IWebElement>, IWebElement> _elementResolver;
+        private readonly WebElementResolverRegistry _elementResolvers;
+        private WebDriverResolver _driverResolver;
 
-        public IBrowserConfiguration WithWebDriverResolver(Func<IWebDriver> resolver)
+        public BrowserContextBuilder()
+        {
+            _elementResolvers = new WebElementResolverRegistry();
+        }
+
+        public IBrowserConfiguration WithWebDriverResolver(WebDriverResolver resolver)
         {
             if (resolver == null) throw new ArgumentNullException(nameof(resolver));
-
             _driverResolver = resolver;
             return this;
         }
 
-        public IBrowserConfiguration WithWebElementResolver(Func<ISearchContext, Func<ISearchContext, IWebElement>, IWebElement> resolver)
+        public IBrowserConfiguration WithWebElementResolver(WebElementResolver resolver)
         {
             if (resolver == null) throw new ArgumentNullException(nameof(resolver));
+            _elementResolvers.SetDefault(resolver);
+            return this;
+        }
 
-            _elementResolver = resolver;
+        public IBrowserConfiguration WithWebElementResolver<T>(WebElementResolver resolver) where T : PageControl
+        {
+            if (resolver == null) throw new ArgumentNullException(nameof(resolver));
+            _elementResolvers.Add<T>(resolver);
             return this;
         }
 
         public BrowserContext Build()
         {
             if (_driverResolver == null) throw new InvalidOperationException("WebDriverResolver was not set");
-            var elementResolver = _elementResolver ?? ((context, provider) => provider(context));
-            return new BrowserContext(_driverResolver, elementResolver);
+            return new BrowserContext(_driverResolver, _elementResolvers);
         }
+
     }
 }

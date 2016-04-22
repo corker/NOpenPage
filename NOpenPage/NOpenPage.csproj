@@ -47,7 +47,8 @@
     <Compile Include="Browser.cs" />
     <Compile Include="Configuration\BrowserContextBuilder.cs" />
     <Compile Include="Configuration\BrowserContext.cs" />
-    <Compile Include="Configuration\IResolveWebElements.cs" />
+    <Compile Include="Configuration\WebElementResolverRegistry.cs" />
+    <Compile Include="Configuration\IProvideWebElementResolvers.cs" />
     <Compile Include="Configuration\PageControlContextImpl.cs" />
     <Compile Include="Configuration\IBrowserConfiguration.cs" />
     <Compile Include="IPageControlContext.cs" />

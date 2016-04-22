@@ -5,18 +5,18 @@ namespace NOpenPage.Configuration
 {
     public class BrowserContext
     {
-        private readonly Func<IWebDriver> _driverResolver;
-        private readonly Func<ISearchContext, Func<ISearchContext, IWebElement>, IWebElement> _elementResolver;
+        private readonly WebDriverResolver _driverResolver;
 
-        public BrowserContext(Func<IWebDriver> driverResolver,
-            Func<ISearchContext, Func<ISearchContext, IWebElement>, IWebElement> elementResolver)
+        public BrowserContext(WebDriverResolver driverResolver, IProvideWebElementResolvers elementResolvers)
         {
             if (driverResolver == null) throw new ArgumentNullException(nameof(driverResolver));
-            if (elementResolver == null) throw new ArgumentNullException(nameof(elementResolver));
+            if (elementResolvers == null) throw new ArgumentNullException(nameof(elementResolvers));
 
             _driverResolver = driverResolver;
-            _elementResolver = elementResolver;
+            WebElementResolvers = elementResolvers;
         }
+
+        public IProvideWebElementResolvers WebElementResolvers { get; }
 
         public IWebDriver ResolveWebDriver()
         {
@@ -26,40 +26,6 @@ namespace NOpenPage.Configuration
                 throw new InvalidOperationException("Can't resolve WebDriver. WebDriverResolver returns null.");
             }
             return driver;
-        }
-
-        public IResolveWebElements CreateWebElementResolver(ISearchContext context)
-        {
-            if (context == null) throw new ArgumentNullException(nameof(context));
-
-            return new WebElementResolver(context, _elementResolver);
-        }
-
-        private class WebElementResolver : IResolveWebElements
-        {
-            private readonly ISearchContext _context;
-            private readonly Func<ISearchContext, Func<ISearchContext, IWebElement>, IWebElement> _resolver;
-
-            public WebElementResolver(
-                ISearchContext context,
-                Func<ISearchContext, Func<ISearchContext, IWebElement>, IWebElement> resolver
-                )
-            {
-                _context = context;
-                _resolver = resolver;
-            }
-
-            public IWebElement Resolve(Func<ISearchContext, IWebElement> provider)
-            {
-                if (provider == null) throw new ArgumentNullException(nameof(provider));
-
-                var element = _resolver(_context, provider);
-                if (element == null)
-                {
-                    throw new InvalidOperationException("Can't resolve WebElement. Resolver returns null.");
-                }
-                return element;
-            }
         }
     }
 }

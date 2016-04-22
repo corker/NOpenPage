@@ -17,12 +17,12 @@ namespace NOpenPage
         {
         }
 
-        private PageControl(Func<ISearchContext, IWebElement> element, IPageControlContext context)
+        private PageControl(WebElementProvider provider, IPageControlContext context)
         {
-            if (element == null) throw new ArgumentNullException(nameof(element));
+            if (provider == null) throw new ArgumentNullException(nameof(provider));
             if (context == null) throw new ArgumentNullException(nameof(context));
 
-            _context = context.GetImpl(element);
+            _context = context.GetImpl(provider, GetType());
         }
 
         protected IWebElement Element => _context.Element;

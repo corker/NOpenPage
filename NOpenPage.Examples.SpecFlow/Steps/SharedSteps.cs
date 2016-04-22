@@ -1,4 +1,6 @@
 ﻿using System;
+using NOpenPage.Configuration;
+using NOpenPage.Examples.SpecFlow.Pages.NuGetOrg;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
@@ -17,7 +19,8 @@ namespace NOpenPage.Examples.SpecFlow.Steps
             {
                 config
                     .WithWebDriverResolver(ResolveWebDriver)
-                    .WithWebElementResolver(ResolveWebElement);
+                    .WithWebElementResolver(ResolveWebElement)
+                    .WithWebElementResolver<SearchPanel>(ResolveSearchPanel);
             });
         }
 
@@ -44,7 +47,7 @@ namespace NOpenPage.Examples.SpecFlow.Steps
             throw new InvalidOperationException("WebDriver not found");
         }
 
-        private static IWebElement ResolveWebElement(ISearchContext context, Func<ISearchContext, IWebElement> resolver)
+        private static IWebElement ResolveWebElement(ISearchContext context, WebElementProvider provider)
         {
             if (context == null) throw new ArgumentNullException(nameof(context));
 
@@ -54,7 +57,20 @@ namespace NOpenPage.Examples.SpecFlow.Steps
                 PollingInterval = TimeSpan.FromMilliseconds(500.0)
             };
             wait.IgnoreExceptionTypes(typeof (NotFoundException));
-            return wait.Until(resolver);
+            return wait.Until(c => provider(c));
+        }
+
+        private static IWebElement ResolveSearchPanel(ISearchContext context, WebElementProvider provider)
+        {
+            if (context == null) throw new ArgumentNullException(nameof(context));
+
+            var wait = new DefaultWait<ISearchContext>(context)
+            {
+                Timeout = TimeSpan.FromMinutes(10),
+                PollingInterval = TimeSpan.FromMilliseconds(500.0)
+            };
+            wait.IgnoreExceptionTypes(typeof (NotFoundException));
+            return wait.Until(c => provider(c));
         }
     }
 }

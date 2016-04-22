@@ -3,9 +3,16 @@ using OpenQA.Selenium;
 
 namespace NOpenPage.Configuration
 {
+    public delegate IWebDriver WebDriverResolver();
+
+    public delegate IWebElement WebElementResolver(ISearchContext context, WebElementProvider provider);
+
+    public delegate IWebElement WebElementProvider(ISearchContext context);
+
     public interface IBrowserConfiguration
     {
-        IBrowserConfiguration WithWebDriverResolver(Func<IWebDriver> resolver);
-        IBrowserConfiguration WithWebElementResolver(Func<ISearchContext, Func<ISearchContext, IWebElement>, IWebElement> resolver);
+        IBrowserConfiguration WithWebDriverResolver(WebDriverResolver resolver);
+        IBrowserConfiguration WithWebElementResolver(WebElementResolver resolver);
+        IBrowserConfiguration WithWebElementResolver<T>(WebElementResolver resolver) where T : PageControl;
     }
 }
