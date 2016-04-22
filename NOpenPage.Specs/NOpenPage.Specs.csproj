@@ -58,9 +58,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="UnitTests\describe_BrowserContext.cs" />
     <Compile Include="nspec.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UnitTests\describe_BrowserContextBuilder.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
