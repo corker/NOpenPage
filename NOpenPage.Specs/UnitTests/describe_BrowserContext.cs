@@ -3,9 +3,8 @@ using FakeItEasy;
 using NOpenPage.Configuration;
 using NSpec;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Support.UI;
 
-namespace NOpenPage.Specs.Configuration
+namespace NOpenPage.Specs.UnitTests
 {
     public class describe_BrowserContext : nspec
     {
@@ -13,8 +12,9 @@ namespace NOpenPage.Specs.Configuration
         {
             before = () =>
             {
-                _waitFactory = A.Fake<Func<ISearchContext, IWait<ISearchContext>>>();
-                _action = () => _target = new BrowserContext(_driverResolver, _waitFactory);
+                _elementResolver =
+                    A.Fake<Func<ISearchContext, Func<ISearchContext, IWebElement>, IWebElement>>(x => x.Strict());
+                _action = () => _target = new BrowserContext(_driverResolver, _elementResolver);
             };
 
             it["should throw"] = () => { expect<ArgumentNullException>(_action); };
@@ -24,8 +24,8 @@ namespace NOpenPage.Specs.Configuration
         {
             before = () =>
             {
-                _driverResolver = A.Fake<Func<IWebDriver>>();
-                _action = () => _target = new BrowserContext(_driverResolver, _waitFactory);
+                _driverResolver = A.Fake<Func<IWebDriver>>(x => x.Strict());
+                _action = () => _target = new BrowserContext(_driverResolver, _elementResolver);
             };
 
             it["should throw"] = () => { expect<ArgumentNullException>(_action); };
@@ -35,11 +35,12 @@ namespace NOpenPage.Specs.Configuration
         {
             before = () =>
             {
-                _waitFactory = A.Fake<Func<ISearchContext, IWait<ISearchContext>>>(x => x.Strict());
+                _elementResolver =
+                    A.Fake<Func<ISearchContext, Func<ISearchContext, IWebElement>, IWebElement>>(x => x.Strict());
                 _driverResolver = A.Fake<Func<IWebDriver>>(x => x.Strict());
             };
 
-            act = () => { _target = new BrowserContext(_driverResolver, _waitFactory); };
+            act = () => { _target = new BrowserContext(_driverResolver, _elementResolver); };
 
             context["when resolve web driver"] = () =>
             {
@@ -52,12 +53,12 @@ namespace NOpenPage.Specs.Configuration
                     it["should throw"] = () => { expect<ArgumentNullException>(_action); };
                 };
 
-                context["when resolver returns value"] = () =>
+                context["when resolver returns driver"] = () =>
                 {
                     before = () => { A.CallTo(() => _driverResolver()).Returns(ExpectedWebDriver); };
                     act = () => _action();
 
-                    it["should return the same value"] = () => { _webDriver.should_be_same(ExpectedWebDriver); };
+                    it["should return the same driver"] = () => { _webDriver.should_be_same(ExpectedWebDriver); };
                 };
             };
 
@@ -65,37 +66,44 @@ namespace NOpenPage.Specs.Configuration
             {
                 before = () => _action = () => _webElementResolver = _target.CreateWebElementResolver(_searchContext);
 
-                context["when receives no search context"] =
-                    () => { it["should throw"] = () => { expect<ArgumentNullException>(_action); }; };
+                context["when no search context provided"] =
+                    () =>
+                    {
+                        before = () => _searchContext = null;
 
-                context["when receives search context"] = () =>
+                        it["should throw"] = () => { expect<ArgumentNullException>(_action); };
+                    };
+
+                context["when search context provided"] = () =>
                 {
-                    before = () => { _searchContext = A.Fake<ISearchContext>(); };
+                    before = () => { _searchContext = A.Fake<ISearchContext>(x => x.Strict()); };
                     act = () => _action();
 
-                    context["when wait factory returns null"] = () =>
+                    context["when resolver returns null"] = () =>
                     {
-                        before = () => { A.CallTo(() => _waitFactory(A<ISearchContext>._)).Returns(null); };
+                        before = () => { _elementResolver = (c, p) => null; };
 
                         it["should throw"] = () =>
                         {
-                            var provider = A.Fake<Func<ISearchContext, IWebElement>>();
+                            Func<ISearchContext, IWebElement> provider = c => null;
                             Action action = () => { _webElementResolver.Resolve(provider); };
                             expect<ArgumentNullException>(action);
                         };
                     };
 
-                    context["when wait factory returns value"] = () =>
+                    context["when resolver returns element"] = () =>
                     {
                         before =
-                            () => { A.CallTo(() => _waitFactory(A<ISearchContext>._)).Returns(ExpectedWebElement); };
+                            () =>
+                            {
+                                _webElementProvider = c => ExpectedWebElement;
+                                _elementResolver = (c, p) => p(c);
+                            };
 
-                        it["should use wait factory"] = () =>
-                        {
-                            var provider = A.Fake<Func<ISearchContext, IWebElement>>();
-                            _webElementResolver.Resolve(provider);
-                            A.CallTo(() => _waitFactory(_searchContext)).MustHaveHappened(Repeated.Exactly.Once);
-                        };
+                        act = () => _webElement = _webElementResolver.Resolve(_webElementProvider);
+
+                        it["should return the same element"] =
+                            () => { _webElement.should_be_same(ExpectedWebElement); };
                     };
                 };
             };
@@ -103,13 +111,15 @@ namespace NOpenPage.Specs.Configuration
 
         private BrowserContext _target;
         private Func<IWebDriver> _driverResolver;
-        private Func<ISearchContext, IWait<ISearchContext>> _waitFactory;
+        private Func<ISearchContext, Func<ISearchContext, IWebElement>, IWebElement> _elementResolver;
         private ISearchContext _searchContext;
         private IWebDriver _webDriver;
         private IResolveWebElements _webElementResolver;
         private Action _action;
 
-        private static readonly IWebDriver ExpectedWebDriver = A.Fake<IWebDriver>();
-        private static readonly IWait<ISearchContext> ExpectedWebElement = A.Fake<IWait<ISearchContext>>();
+        private static readonly IWebDriver ExpectedWebDriver = A.Fake<IWebDriver>(x => x.Strict());
+        private static readonly IWebElement ExpectedWebElement = A.Fake<IWebElement>(x => x.Strict());
+        private IWebElement _webElement;
+        private Func<ISearchContext, IWebElement> _webElementProvider;
     }
 }
