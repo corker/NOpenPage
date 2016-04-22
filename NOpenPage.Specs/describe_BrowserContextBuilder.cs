@@ -4,7 +4,7 @@ using NOpenPage.Configuration;
 using NSpec;
 using OpenQA.Selenium;
 
-namespace NOpenPage.Specs.UnitTests
+namespace NOpenPage.Specs
 {
     [Tag("describe_BrowserContext")]
     public class describe_BrowserContextBuilder : nspec

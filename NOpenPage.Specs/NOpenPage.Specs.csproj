@@ -60,7 +60,8 @@
   <ItemGroup>
     <Compile Include="nspec.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UnitTests\describe_BrowserContextBuilder.cs" />
+    <Compile Include="describe_Browser.cs" />
+    <Compile Include="describe_BrowserContextBuilder.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -74,9 +75,7 @@
       <Name>NOpenPage</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="E2E\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

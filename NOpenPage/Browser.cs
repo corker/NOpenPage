@@ -5,7 +5,12 @@ namespace NOpenPage
 {
     public static class Browser
     {
-        private static BrowserContext _context;
+        private static Lazy<BrowserContext> _context;
+
+        static Browser()
+        {
+            _context = new Lazy<BrowserContext>(() => new BrowserContextBuilder().Build());
+        }
 
         public static void Configure(Action<IBrowserConfiguration> action)
         {
@@ -13,13 +18,13 @@ namespace NOpenPage
 
             var builder = new BrowserContextBuilder();
             action(builder);
-            _context = builder.Build();
+            _context = new Lazy<BrowserContext>(() => builder.Build());
         }
 
         public static T On<T>() where T : Page
         {
-            var driver = _context.ResolveWebDriver();
-            var elements = _context.CreateWebElementResolver(driver);
+            var driver = _context.Value.ResolveWebDriver();
+            var elements = _context.Value.CreateWebElementResolver(driver);
             var context = new PageContext(driver, elements);
             return (T) Activator.CreateInstance(typeof (T), context);
         }

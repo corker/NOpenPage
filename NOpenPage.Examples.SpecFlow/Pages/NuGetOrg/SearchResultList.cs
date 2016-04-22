@@ -9,6 +9,6 @@ namespace NOpenPage.Examples.SpecFlow.Pages.NuGetOrg
         {
         }
 
-        public SearchResultListItem[] Items => Controls<SearchResultListItem>(By.XPath("li")).ToArray();
+        public SearchResultListItem[] Items => Controls<SearchResultListItem>(By.ClassName("package")).ToArray();
     }
 }
