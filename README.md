@@ -29,7 +29,7 @@ How?
 Install-Package NOpenPage
 ```
 
-2. Configure the way NOpenPage can reach current WebDriver and WebElement resolvers
+2. Configure NOpenPage
 --
 Here is a code from a sample project that can be found in this repository. The code shows how to configure NOpenPage with [SpecFlow](http://www.specflow.org/) - BDD framework that implements Gherkins language for .NET environment.
 ```
@@ -102,7 +102,7 @@ namespace NOpenPage.Examples.SpecFlow.Steps
     }
 }
 ```
-3. Start using Browser class from your tests
+3. Use Browser class from your tests
 --
 Here is a code from a sample project that can be found in this repository. The code shows how to use NOpenPage with [SpecFlow](http://www.specflow.org/) - BDD framework that implements Gherkins language for .NET environment.
 ```
@@ -132,7 +132,7 @@ namespace NOpenPage.Examples.SpecFlow.Steps
 }
 ```
 
-Please be aware, this is an alpha version. thus not tested well. To be continued...
+Please be aware, this is an alpha version. Thus not tested well and lack of comments in the code. To be continued...
 
 Who am I?
 --
