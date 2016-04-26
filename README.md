@@ -9,7 +9,7 @@ As Martin Fowler explains in this  [article](http://martinfowler.com/bliki/PageO
 Why?
 ====
 
-There are some implementations for the page object pattern like [Bumblebee](https://www.nuget.org/packages/Bumblebee.Automation) or [LoadableComponent](https://github.com/SeleniumHQ/selenium/wiki/LoadableComponent) in [WebDriver.Support](https://www.nuget.org/packages/Selenium.Support/). Then why do you need another one? The motivation behind NOpenPage is to have a page object layer that has a little learning curve and is flexible enough to not to stand on your way.
+There are some implementations for the page object pattern like [Bumblebee](https://www.nuget.org/packages/Bumblebee.Automation) or [LoadableComponent](https://github.com/SeleniumHQ/selenium/wiki/LoadableComponent) in [WebDriver.Support](https://www.nuget.org/packages/Selenium.Support/). Then why do you need another one? The motivation behind NOpenPage is to have a page object layer with a little learning curve and flexible enough to not to stand on your way.
 
 What?
 ====
