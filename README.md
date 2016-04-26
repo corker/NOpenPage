@@ -136,7 +136,7 @@ Please be aware, this is an alpha version. thus not tested well. To be continued
 
 Who am I?
 --
-My name is Michael Borisov. I'm interested in CQRS, DDD, event sourcing and micro services architecture.
+My name is Michael Borisov. I'm interested in continuous delivery, distributed systems, CQRS, DDD, event sourcing, micro services architecture and everything related to the topic.
 
 If you have any questions or comments regarding to the project please feel free to contact me on [Twitter](https://twitter.com/fkem) or [LinkedIn](https://www.linkedin.com/in/michaelborisov)
 
