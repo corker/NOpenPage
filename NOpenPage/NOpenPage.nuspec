@@ -8,6 +8,7 @@
     <title />
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
+    <iconUrl>https://raw.githubusercontent.com/corker/NOpenPage/master/NOpenPage.png</iconUrl>
     <projectUrl>https://github.com/corker/NOpenPage</projectUrl>
     <licenseUrl>https://raw.githubusercontent.com/corker/NOpenPage/master/LICENSE</licenseUrl>
     <tags>Selenium WebDriver browser automation PageObject</tags>

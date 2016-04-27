@@ -9,6 +9,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NOpenPage.Specs", "NOpenPag
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NOpenPage.Examples.SpecFlow", "NOpenPage.Examples.SpecFlow\NOpenPage.Examples.SpecFlow.csproj", "{5ECFDF20-66F0-4DE0-94FD-383597B976DD}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{B1360976-E6EE-438B-ABF2-B1AE3FBC622E}"
+	ProjectSection(SolutionItems) = preProject
+		NOpenPage.png = NOpenPage.png
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
