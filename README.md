@@ -31,7 +31,7 @@ Install-Package NOpenPage
 
 2. Configure NOpenPage
 --
-Here is a code from a sample project that can be found in this repository. The code shows how to configure NOpenPage with [SpecFlow](http://www.specflow.org/) - BDD framework that implements Gherkins language for .NET environment.
+Here is a code from a sample project that can be found in this repository. The code shows how to configure NOpenPage with [SpecFlow](http://www.specflow.org/) - BDD framework that implements Gherkin language for .NET environment.
 ```
 namespace NOpenPage.Examples.SpecFlow.Steps
 {
@@ -104,7 +104,7 @@ namespace NOpenPage.Examples.SpecFlow.Steps
 ```
 3. Use Browser class from your tests
 --
-Here is a code from a sample project that can be found in this repository. The code shows how to use NOpenPage with [SpecFlow](http://www.specflow.org/) - BDD framework that implements Gherkins language for .NET environment.
+Here is a code from a sample project that can be found in this repository. The code shows how to use NOpenPage with [SpecFlow](http://www.specflow.org/) - BDD framework that implements Gherkin language for .NET environment.
 ```
 namespace NOpenPage.Examples.SpecFlow.Steps
 {
