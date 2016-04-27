@@ -15,9 +15,9 @@ What?
 ====
 
 There are only three classes that you need to be aware of to start with NOpenPage:
-- Using static Browser class you can access your page implementations;
-- Page is a base class for all your page objects;
-- PageControl is a base class for all your page controls.
+- Browser is a static class that is an entry point to page and control implementations;
+- Page is a base class for all page objects;
+- PageControl is a base class for all page controls.
 
 How?
 ====
