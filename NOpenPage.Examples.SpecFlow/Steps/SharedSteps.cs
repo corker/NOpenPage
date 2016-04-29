@@ -20,7 +20,8 @@ namespace NOpenPage.Examples.SpecFlow.Steps
                 config
                     .WithWebDriverResolver(ResolveWebDriver)
                     .WithWebElementResolver(ResolveWebElement)
-                    .WithWebElementResolver<SearchPanel>(ResolveSearchPanel);
+                    .WithWebElementResolver<SearchPanel>(ResolveSearchPanel)
+                    .WithWebElementResolver<PageControlWithException>(ResolveWithException);
             });
         }
 
@@ -49,8 +50,6 @@ namespace NOpenPage.Examples.SpecFlow.Steps
 
         private static IWebElement ResolveWebElement(ISearchContext context, WebElementProvider provider)
         {
-            if (context == null) throw new ArgumentNullException(nameof(context));
-
             var wait = new DefaultWait<ISearchContext>(context)
             {
                 Timeout = TimeSpan.FromMinutes(1),
@@ -62,8 +61,6 @@ namespace NOpenPage.Examples.SpecFlow.Steps
 
         private static IWebElement ResolveSearchPanel(ISearchContext context, WebElementProvider provider)
         {
-            if (context == null) throw new ArgumentNullException(nameof(context));
-
             var wait = new DefaultWait<ISearchContext>(context)
             {
                 Timeout = TimeSpan.FromMinutes(10),
@@ -71,6 +68,11 @@ namespace NOpenPage.Examples.SpecFlow.Steps
             };
             wait.IgnoreExceptionTypes(typeof (NotFoundException));
             return wait.Until(c => provider(c));
+        }
+
+        private static IWebElement ResolveWithException(ISearchContext context, WebElementProvider provider)
+        {
+            throw new InvalidOperationException("ResolvedWithException");
         }
     }
 }

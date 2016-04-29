@@ -59,6 +59,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Pages\NuGetOrg\NuGetOrgPage.cs" />
+    <Compile Include="Pages\NuGetOrg\PageControlWithException.cs" />
     <Compile Include="Pages\NuGetOrg\SearchPanel.cs" />
     <Compile Include="Pages\NuGetOrg\SearchResultList.cs" />
     <Compile Include="Pages\NuGetOrg\SearchResultListItem.cs" />

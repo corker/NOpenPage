@@ -28,5 +28,10 @@ namespace NOpenPage.Examples.SpecFlow.Pages.NuGetOrg
             var countByControls = Controls<SearchResultListItem>(By.ClassName("package")).Count();
             Assert.AreEqual(count, countByControls);
         }
+
+        public void AssertCustomWebElementResolverExecuted()
+        {
+            Control<PageControlWithException>().AssertCustomWebElementResolverExecuted();
+        }
     }
 }

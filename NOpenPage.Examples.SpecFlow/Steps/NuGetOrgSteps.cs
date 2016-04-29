@@ -23,5 +23,11 @@ namespace NOpenPage.Examples.SpecFlow.Steps
         {
             Browser.On<NuGetOrgPage>().AssertSearchResultsCountIs(count);
         }
+
+        [Then(@"it should use custom web element resolver for configured page control")]
+        public void ThenItShouldUseCustomWebElementResolverForConfiguredPageControl()
+        {
+            Browser.On<NuGetOrgPage>().AssertCustomWebElementResolverExecuted();
+        }
     }
 }
