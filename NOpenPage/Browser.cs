@@ -6,7 +6,7 @@ namespace NOpenPage
 {
     /// <summary>
     ///     An entry point for NOpenPage.
-    ///     - Configures the integration with Selenium WebDriver
+    ///     - Configures integration with Selenium WebDriver
     ///     - Serves as a factory for user defined page classes
     /// </summary>
     public static class Browser
@@ -31,12 +31,12 @@ namespace NOpenPage
         }
 
         /// <summary>
-        ///     Create a page class of
-        ///     <typeparam name="T"></typeparam>
-        ///     with the current <see cref="PageContext" />.
+        ///     Create a page class of <typeparamref name="T" /> with a current <see cref="PageContext" />.
         /// </summary>
         /// <typeparam name="T">A type of a page class to create</typeparam>
-        /// <returns>A new instance of the page class</returns>
+        /// <returns>
+        ///     A new instance of <typeparamref name="T" />
+        /// </returns>
         public static T On<T>() where T : Page
         {
             var page = CreatePage<T>();
@@ -44,12 +44,13 @@ namespace NOpenPage
         }
 
         /// <summary>
-        ///     Create a page class of
-        ///     <typeparam name="T"></typeparam>
-        ///     with the currect <see cref="PageContext" /> and open this page in the browser.
+        ///     Create a page class of <typeparamref name="T" /> with the currect <see cref="PageContext" /> and open this page in
+        ///     a browser.
         /// </summary>
         /// <typeparam name="T">A type of a page class to create</typeparam>
-        /// <returns>A new instance of the page class</returns>
+        /// <returns>
+        ///     A new instance of <typeparamref name="T" />
+        /// </returns>
         public static T Open<T>() where T : Page, IOpenPages
         {
             var page = CreatePage<T>();
