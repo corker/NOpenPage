@@ -9,8 +9,8 @@ namespace NOpenPage.Configuration
 
         public BrowserContext(WebDriverResolver driverResolver, IProvideWebElementResolvers elementResolvers)
         {
-            if (driverResolver == null) throw new ArgumentNullException(nameof(driverResolver));
-            if (elementResolvers == null) throw new ArgumentNullException(nameof(elementResolvers));
+            Guard.NotNull(nameof(driverResolver), driverResolver);
+            Guard.NotNull(nameof(elementResolvers), elementResolvers);
 
             _driverResolver = driverResolver;
             WebElementResolvers = elementResolvers;

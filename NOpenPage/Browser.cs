@@ -24,7 +24,7 @@ namespace NOpenPage
         /// <param name="action">A configuration to be applied</param>
         public static void Configure(Action<IBrowserConfiguration> action)
         {
-            if (action == null) throw new ArgumentNullException(nameof(action));
+            Guard.NotNull(nameof(action), action);
             var builder = new BrowserContextBuilder();
             action(builder);
             _context = new Lazy<BrowserContext>(() => builder.Build());

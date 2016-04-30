@@ -45,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Browser.cs" />
+    <Compile Include="Guard.cs" />
     <Compile Include="Configuration\BrowserContextBuilder.cs" />
     <Compile Include="Configuration\BrowserContext.cs" />
     <Compile Include="Configuration\WebElementResolverRegistry.cs" />

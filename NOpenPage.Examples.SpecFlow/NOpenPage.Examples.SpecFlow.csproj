@@ -60,7 +60,8 @@
   <ItemGroup>
     <Compile Include="Pages\NuGetOrg\NuGetOrgPage.cs" />
     <Compile Include="Pages\NuGetOrg\PageControlWithException.cs" />
-    <Compile Include="Pages\NuGetOrg\SearchPanel.cs" />
+    <Compile Include="Pages\NuGetOrg\SearchBox.cs" />
+    <Compile Include="Pages\NuGetOrg\SearchBoxSubmit.cs" />
     <Compile Include="Pages\NuGetOrg\SearchResultList.cs" />
     <Compile Include="Pages\NuGetOrg\SearchResultListItem.cs" />
     <Compile Include="Steps\NuGetOrgSteps.cs" />

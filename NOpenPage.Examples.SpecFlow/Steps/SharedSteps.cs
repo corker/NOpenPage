@@ -20,7 +20,7 @@ namespace NOpenPage.Examples.SpecFlow.Steps
                 config
                     .WithWebDriverResolver(ResolveWebDriver)
                     .WithWebElementResolver(ResolveWebElement)
-                    .WithWebElementResolver<SearchPanel>(ResolveSearchPanel)
+                    .WithWebElementResolver<SearchBox>(ResolveSearchPanel)
                     .WithWebElementResolver<PageControlWithException>(ResolveWithException);
             });
         }

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using NOpenPage.Configuration;
 using OpenQA.Selenium;
 
@@ -30,14 +29,14 @@ namespace NOpenPage
         /// </summary>
         /// <param name="by">A query to search for an element</param>
         /// <param name="context">A page control context to resolve a page control specific context</param>
-        protected PageControl(By @by, IPageControlContext context) : this(c => c.FindElement(@by), context)
+        protected PageControl(By by, IPageControlContext context) : this(c => c.FindElement(by), context)
         {
         }
 
         private PageControl(WebElementProvider provider, IPageControlContext context)
         {
-            if (provider == null) throw new ArgumentNullException(nameof(provider));
-            if (context == null) throw new ArgumentNullException(nameof(context));
+            Guard.NotNull(nameof(provider), provider);
+            Guard.NotNull(nameof(context), context);
 
             _context = context.GetImpl(provider, GetType());
         }
@@ -67,9 +66,9 @@ namespace NOpenPage
         /// <returns>
         ///     An array of new instances <typeparamref name="T" />
         /// </returns>
-        protected IEnumerable<T> Controls<T>(By @by) where T : PageControl
+        protected IEnumerable<T> Controls<T>(By by) where T : PageControl
         {
-            return _context.Controls<T>(@by);
+            return _context.Controls<T>(by);
         }
     }
 }

@@ -14,21 +14,21 @@ namespace NOpenPage.Configuration
 
         public IBrowserConfiguration WithWebDriverResolver(WebDriverResolver resolver)
         {
-            if (resolver == null) throw new ArgumentNullException(nameof(resolver));
+            Guard.NotNull(nameof(resolver), resolver);
             _driverResolver = resolver;
             return this;
         }
 
         public IBrowserConfiguration WithWebElementResolver(WebElementResolver resolver)
         {
-            if (resolver == null) throw new ArgumentNullException(nameof(resolver));
+            Guard.NotNull(nameof(resolver), resolver);
             _elementResolvers.SetDefault(resolver);
             return this;
         }
 
         public IBrowserConfiguration WithWebElementResolver<T>(WebElementResolver resolver) where T : PageControl
         {
-            if (resolver == null) throw new ArgumentNullException(nameof(resolver));
+            Guard.NotNull(nameof(resolver), resolver);
             _elementResolvers.Add<T>(resolver);
             return this;
         }
@@ -38,6 +38,5 @@ namespace NOpenPage.Configuration
             if (_driverResolver == null) throw new InvalidOperationException("WebDriverResolver was not set");
             return new BrowserContext(_driverResolver, _elementResolvers);
         }
-
     }
 }

@@ -17,7 +17,7 @@ namespace NOpenPage.Examples.SpecFlow.Pages.NuGetOrg
 
         public void Search(string text)
         {
-            Control<SearchPanel>().Search(text);
+            Control<SearchBox>().Search(text);
         }
 
         public void AssertSearchResultsCountIs(int count)
