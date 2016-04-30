@@ -56,7 +56,6 @@
     <Compile Include="IPageContext.cs" />
     <Compile Include="Configuration\IPageControlContextImpl.cs" />
     <Compile Include="PageControl.cs" />
-    <Compile Include="IOpenPages.cs" />
     <Compile Include="Page.cs" />
     <Compile Include="Configuration\PageContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

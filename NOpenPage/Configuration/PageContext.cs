@@ -18,19 +18,7 @@ namespace NOpenPage.Configuration
             _elementResolvers = elementResolvers;
         }
 
-        public IWebDriver Driver
-        {
-            get
-            {
-                var driver = _driverResolver();
-                if (driver == null)
-                {
-                    var message = "Can't resolve WebDriver. Resolver returns null.";
-                    throw new InvalidOperationException(message);
-                }
-                return driver;
-            }
-        }
+        public IWebDriver Driver =>  _driverResolver();
 
         public T Control<T>() where T : PageControl
         {

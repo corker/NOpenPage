@@ -1,5 +1,6 @@
 ﻿using System;
 using NOpenPage.Configuration;
+using OpenQA.Selenium;
 
 namespace NOpenPage
 {
@@ -41,19 +42,9 @@ namespace NOpenPage
             return CreatePage<T>();
         }
 
-        /// <summary>
-        ///     Create a page class of <typeparamref name="T" /> with the currect <see cref="PageContext" /> and open this page in
-        ///     a browser.
-        /// </summary>
-        /// <typeparam name="T">A type of a page class to create</typeparam>
-        /// <returns>
-        ///     A new instance of <typeparamref name="T" />
-        /// </returns>
-        public static T Open<T>() where T : Page, IOpenPages
+        public static void Do(Action<IWebDriver> action)
         {
-            var page = CreatePage<T>();
-            page.Open();
-            return page;
+            _context.Value.Do(action);
         }
 
         private static T CreatePage<T>() where T : Page

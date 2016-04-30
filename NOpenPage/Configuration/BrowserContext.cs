@@ -22,5 +22,12 @@ namespace NOpenPage.Configuration
         {
             return new PageContext(_driverResolver, _elementResolvers);
         }
+
+        public void Do(Action<IWebDriver> action)
+        {
+            Guard.NotNull(nameof(action), action);
+            var driver = _driverResolver();
+            action(driver);
+        }
     }
 }

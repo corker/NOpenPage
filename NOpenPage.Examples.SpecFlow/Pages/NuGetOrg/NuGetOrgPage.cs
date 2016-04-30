@@ -4,15 +4,15 @@ using OpenQA.Selenium;
 
 namespace NOpenPage.Examples.SpecFlow.Pages.NuGetOrg
 {
-    public class NuGetOrgPage : Page, IOpenPages
+    public class NuGetOrgPage : Page
     {
         public NuGetOrgPage(IPageContext context) : base(context)
         {
         }
 
-        public void Open()
+        public static void Navigate(IWebDriver driver)
         {
-            Driver.Navigate().GoToUrl("https://www.nuget.org");
+            driver.Navigate().GoToUrl("https://www.nuget.org");
         }
 
         public void Search(string text)

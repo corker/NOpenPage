@@ -1,5 +1,4 @@
 ﻿using System;
-using OpenQA.Selenium;
 
 namespace NOpenPage.Configuration
 {
@@ -37,7 +36,22 @@ namespace NOpenPage.Configuration
         public BrowserContext Build()
         {
             if (_driverResolver == null) throw new InvalidOperationException("WebDriverResolver was not set");
-            return new BrowserContext(_driverResolver, _elementResolvers);
+            var driverResolver = CreateWebDriverResolver(_driverResolver);
+            return new BrowserContext(driverResolver, _elementResolvers);
+        }
+
+        private static WebDriverResolver CreateWebDriverResolver(WebDriverResolver driverResolver)
+        {
+            return () =>
+            {
+                var driver = driverResolver();
+                if (driver == null)
+                {
+                    var message = "Can't resolve WebDriver. Resolver returns null.";
+                    throw new InvalidOperationException(message);
+                }
+                return driver;
+            };
         }
     }
 }
