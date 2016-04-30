@@ -114,7 +114,7 @@ namespace NOpenPage.Examples.SpecFlow.Steps
         [Given(@"I have opened a nuget home page")]
         public void GivenIHaveOpenedANugetHomePage()
         {
-            Browser.Open<NuGetOrgPage>();
+            Browser.Do(NuGetOrgPage.Navigate);
         }
 
         [When(@"I search for '(.*)'")]
