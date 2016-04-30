@@ -7,18 +7,30 @@ namespace NOpenPage.Configuration
 {
     public class PageContext : IPageControlContext, IPageContext
     {
-        private readonly Lazy<IWebDriver> _driver;
-        private readonly IProvideWebElementResolvers _resolvers;
+        private readonly WebDriverResolver _driverResolver;
+        private readonly IProvideWebElementResolvers _elementResolvers;
 
-        public PageContext(Lazy<IWebDriver> driver, IProvideWebElementResolvers resolvers)
+        public PageContext(WebDriverResolver driverResolver, IProvideWebElementResolvers elementResolvers)
         {
-            Guard.NotNull(nameof(driver), driver);
-            Guard.NotNull(nameof(resolvers), resolvers);
-            _driver = driver;
-            _resolvers = resolvers;
+            Guard.NotNull(nameof(driverResolver), driverResolver);
+            Guard.NotNull(nameof(elementResolvers), elementResolvers);
+            _driverResolver = driverResolver;
+            _elementResolvers = elementResolvers;
         }
 
-        public IWebDriver Driver => _driver.Value;
+        public IWebDriver Driver
+        {
+            get
+            {
+                var driver = _driverResolver();
+                if (driver == null)
+                {
+                    var message = "Can't resolve WebDriver. Resolver returns null.";
+                    throw new InvalidOperationException(message);
+                }
+                return driver;
+            }
+        }
 
         public T Control<T>() where T : PageControl
         {
@@ -39,8 +51,8 @@ namespace NOpenPage.Configuration
             Guard.NotNull(nameof(provider), provider);
             Guard.NotNull(nameof(type), type);
 
-            var element = new Lazy<IWebElement>(() => _resolvers.Get(type)(Driver, provider));
-            return new PageControlContextImpl(element, _resolvers);
+            var element = new Lazy<IWebElement>(() => _elementResolvers.Get(type)(Driver, provider));
+            return new PageControlContextImpl(element, _elementResolvers);
         }
     }
 }

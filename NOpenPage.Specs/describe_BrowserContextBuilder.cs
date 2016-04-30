@@ -21,7 +21,7 @@ namespace NOpenPage.Specs
 
         public void when_resolve_web_driver()
         {
-            act = () => _webDriver = _browserContext.ResolveWebDriver();
+            act = () => _webDriver = _browserContext.CreatePageContext().Driver;
             it["should throw"] = expect<InvalidOperationException>();
 
             context["with custom web driver resolver"] = () =>

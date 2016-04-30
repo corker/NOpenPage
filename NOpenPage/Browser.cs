@@ -1,6 +1,5 @@
 ﻿using System;
 using NOpenPage.Configuration;
-using OpenQA.Selenium;
 
 namespace NOpenPage
 {
@@ -39,8 +38,7 @@ namespace NOpenPage
         /// </returns>
         public static T On<T>() where T : Page
         {
-            var page = CreatePage<T>();
-            return page;
+            return CreatePage<T>();
         }
 
         /// <summary>
@@ -61,10 +59,8 @@ namespace NOpenPage
         private static T CreatePage<T>() where T : Page
         {
             var context = _context.Value;
-            var driver = new Lazy<IWebDriver>(context.ResolveWebDriver);
-            var elementResolvers = context.WebElementResolvers;
-            var pageContext = new PageContext(driver, elementResolvers);
-            return (T) Activator.CreateInstance(typeof (T), pageContext);
+            var pageContext = context.CreatePageContext();
+            return (T) Activator.CreateInstance(typeof(T), pageContext);
         }
     }
 }

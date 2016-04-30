@@ -65,10 +65,10 @@ namespace NOpenPage.Examples.SpecFlow.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Click through the nuget home page")]
-        public virtual void ClickThroughTheNugetHomePage()
+        [NUnit.Framework.DescriptionAttribute("Click through the nuget home page for Selenium")]
+        public virtual void ClickThroughTheNugetHomePageForSelenium()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Click through the nuget home page", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Click through the nuget home page for Selenium", ((string[])(null)));
 #line 4
 this.ScenarioSetup(scenarioInfo);
 #line 5
@@ -82,15 +82,32 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Click through the nuget home page for NOpenPage")]
+        public virtual void ClickThroughTheNugetHomePageForNOpenPage()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Click through the nuget home page for NOpenPage", ((string[])(null)));
+#line 9
+this.ScenarioSetup(scenarioInfo);
+#line 10
+ testRunner.Given("I have opened a nuget home page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 11
+ testRunner.When("I search for \'NOpenPage\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 12
+ testRunner.Then("I can see 1 packages", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Custom WebElementResolver")]
         public virtual void CustomWebElementResolver()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Custom WebElementResolver", ((string[])(null)));
-#line 9
+#line 14
 this.ScenarioSetup(scenarioInfo);
-#line 10
+#line 15
     testRunner.Given("I have opened a nuget home page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 11
+#line 16
     testRunner.Then("it should use custom web element resolver for configured page control", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
