@@ -132,7 +132,7 @@ namespace NOpenPage.Examples.SpecFlow.Steps
 }
 ```
 
-Please be aware, this is an alpha version. Thus lack of production use. Although it's fully covered with tests.
+The package is fully covered with tests and successfully applied on real products.
 
 Who am I?
 --
