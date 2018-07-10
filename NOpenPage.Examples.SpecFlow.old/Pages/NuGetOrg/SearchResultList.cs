@@ -5,7 +5,7 @@ namespace NOpenPage.Examples.SpecFlow.Pages.NuGetOrg
 {
     public class SearchResultList : PageControl
     {
-        public SearchResultList(IPageControlContext context) : base(By.ClassName("list-packages"), context)
+        public SearchResultList(IPageControlContext context) : base(By.Id("searchResults"), context)
         {
         }
 

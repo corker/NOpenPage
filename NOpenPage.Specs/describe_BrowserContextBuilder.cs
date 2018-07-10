@@ -1,5 +1,6 @@
 ﻿using System;
 using FakeItEasy;
+using FluentAssertions;
 using NOpenPage.Configuration;
 using NSpec;
 using OpenQA.Selenium;
@@ -43,7 +44,7 @@ namespace NOpenPage.Specs
                 context["when web driver resolved"] = () =>
                 {
                     beforeAll = () => _driverResolver = () => ExpectedWebDriver;
-                    it["should return expected web driver"] = () => { _webDriver.should_be_same(ExpectedWebDriver); };
+                    it["should return expected web driver"] = () => { _webDriver.Should().BeSameAs(ExpectedWebDriver); };
                 };
             };
         }
