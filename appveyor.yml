@@ -1,21 +1,15 @@
 version: 1.1.{build}
-assembly_info:
-  patch: true
-  file: '**\AssemblyInfo.*'
-  assembly_version: '{version}'
-  assembly_file_version: '{version}'
-  assembly_informational_version: '{version}'
-dotnet_csproj:
-  patch: true
-  file: '**\*.csproj'
-  version: '{version}'
-  package_version: '{version}'
-  assembly_version: '{version}'
-  file_version: '{version}'
-  informational_version: '{version}'
 before_build:
-- cmd: nuget restore
-build:
-  publish_nuget: true
-  publish_nuget_symbols: true
-  verbosity: minimal
+  - cmd: dotnet restore
+build_script:
+  - cmd: dotnet build -c=Release /p:Version %APPVEYOR_BUILD_VERSION%
+after_build:
+  - cmd: dotnet pack .\NOpenPage\NOpenPage.csproj --no-build -c Release --include-symbols /p:Version=%APPVEYOR_BUILD_VERSION% -o artifacts
+test_script:
+  - cmd: dotnet test --no-build -c=Release .\NOpenPage.Specs\NOpenPage.Specs.csproj
+  - cmd: dotnet test --no-build -c=Release .\NOpenPage.Examples.SpecFlow\NOpenPage.Examples.SpecFlow.csproj
+artifacts:
+  - path: .\artifacts\**\*.nupkg
+    name: NuGet
+cache:
+  - '%USERPROFILE%\.nuget\packages'
