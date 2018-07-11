@@ -2,7 +2,7 @@ version: 1.1.{build}
 before_build:
   - cmd: dotnet restore
 build_script:
-  - cmd: dotnet build -c=Release /p:Version %APPVEYOR_BUILD_VERSION%
+  - cmd: dotnet build .\NOpenPage.sln -c=Release /p:Version %APPVEYOR_BUILD_VERSION%
 after_build:
   - cmd: dotnet pack .\NOpenPage\NOpenPage.csproj --no-build -c Release --include-symbols /p:Version=%APPVEYOR_BUILD_VERSION% -o artifacts
 test_script:
