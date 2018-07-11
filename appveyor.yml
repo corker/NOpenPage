@@ -9,6 +9,6 @@ test_script:
   - cmd: dotnet test .\NOpenPage.Specs\NOpenPage.Specs.csproj -c Release
   - cmd: dotnet test .\NOpenPage.Examples.SpecFlow\NOpenPage.Examples.SpecFlow.csproj -c Release
 artifacts:
-  - path: .\artifacts\**\*.nupkg
+  - path: '**\*.nupkg'
 cache:
   - '%USERPROFILE%\.nuget\packages'
