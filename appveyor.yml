@@ -27,7 +27,7 @@ after_build:
   - cmd: dotnet pack src\NOpenPage --configuration %CONFIGURATION% --include-symbols --no-build --output ..\..\nupkgs /p:PackageVersion=%APPVEYOR_BUILD_VERSION%
 
 test_script:
-  - cmd: dotnet test spesc\NOpenPage.Specs\NOpenPage.Specs.csproj --configuration %CONFIGURATION%
+  - cmd: dotnet test specs\NOpenPage.Specs\NOpenPage.Specs.csproj --configuration %CONFIGURATION%
   - cmd: dotnet test examples\NOpenPage.Examples.SpecFlow\NOpenPage.Examples.SpecFlow.csproj --configuration %CONFIGURATION%
 
 artifacts:
