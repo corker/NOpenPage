@@ -32,6 +32,3 @@ test_script:
 
 artifacts:
   - path: nupkgs\*.nupkg
-
-cache:
-  - '%USERPROFILE%\.nuget\packages'
