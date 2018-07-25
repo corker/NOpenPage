@@ -5,15 +5,19 @@ VisualStudioVersion = 15.0.27428.2043
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{B1360976-E6EE-438B-ABF2-B1AE3FBC622E}"
 	ProjectSection(SolutionItems) = preProject
+		.gitattributes = .gitattributes
+		.gitignore = .gitignore
 		appveyor.yml = appveyor.yml
+		LICENSE = LICENSE
 		NOpenPage.png = NOpenPage.png
+		README.md = README.md
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NOpenPage", "src\NOpenPage\NOpenPage.csproj", "{6D666B7F-4424-4E32-BB11-7FCEF4FCE16D}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NOpenPage.Specs", "specs\NOpenPage.Specs\NOpenPage.Specs.csproj", "{16EA934D-2E90-4015-B940-79FA3EE972F2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NOpenPage.Examples.SpecFlow", "examples\NOpenPage.Examples.SpecFlow\NOpenPage.Examples.SpecFlow.csproj", "{3DB00656-2E04-47E5-9400-129B263386C1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NOpenPage.Examples.SpecFlow", "examples\NOpenPage.Examples.SpecFlow\NOpenPage.Examples.SpecFlow.csproj", "{3DB00656-2E04-47E5-9400-129B263386C1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
