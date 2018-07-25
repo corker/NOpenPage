@@ -2,12 +2,12 @@ version: 1.1.{build}
 before_build:
   - cmd: dotnet restore
 build_script:
-  - cmd: dotnet build .\NOpenPage\NOpenPage.csproj -c Release /p:Version %APPVEYOR_BUILD_VERSION%
+  - cmd: dotnet build NOpenPage\NOpenPage.csproj -c Release /p:Version %APPVEYOR_BUILD_VERSION%
 after_build:
-  - cmd: dotnet pack .\NOpenPage\NOpenPage.csproj -c Release /p:Version=%APPVEYOR_BUILD_VERSION% --no-build --include-symbols
+  - cmd: dotnet pack NOpenPage\NOpenPage.csproj -c Release /p:Version=%APPVEYOR_BUILD_VERSION% --no-build --include-symbols
 test_script:
-  - cmd: dotnet test .\NOpenPage.Specs\NOpenPage.Specs.csproj -c Release
-  - cmd: dotnet test .\NOpenPage.Examples.SpecFlow\NOpenPage.Examples.SpecFlow.csproj -c Release
+  - cmd: dotnet test NOpenPage.Specs\NOpenPage.Specs.csproj -c Release
+  - cmd: dotnet test NOpenPage.Examples.SpecFlow\NOpenPage.Examples.SpecFlow.csproj -c Release
 artifacts:
   - path: '**\*.nupkg'
 cache:
