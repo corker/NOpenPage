@@ -4,13 +4,6 @@ configuration: Release
 
 image: Visual Studio 2017
 
-assembly_info:
-  patch: true
-  file: '**\AssemblyInfo.*'
-  assembly_version: '{version}'
-  assembly_file_version: '{version}'
-  assembly_informational_version: '{version}'
-
 dotnet_csproj:
   patch: true
   file: '**\*.csproj;**\*.props'
@@ -28,14 +21,14 @@ before_build:
   - cmd: dotnet restore --verbosity Minimal
 
 build_script:
-  - cmd: dotnet build NOpenPage --configuration %CONFIGURATION%
+  - cmd: dotnet build src\NOpenPage --configuration %CONFIGURATION%
 
 after_build:
-  - cmd: dotnet pack NOpenPage --configuration %CONFIGURATION% --include-symbols --no-build --output ..\nupkgs /p:PackageVersion=%APPVEYOR_BUILD_VERSION%
+  - cmd: dotnet pack src\NOpenPage --configuration %CONFIGURATION% --include-symbols --no-build --output ..\..\nupkgs /p:PackageVersion=%APPVEYOR_BUILD_VERSION%
 
 test_script:
-  - cmd: dotnet test NOpenPage.Specs\NOpenPage.Specs.csproj --configuration %CONFIGURATION%
-  - cmd: dotnet test NOpenPage.Examples.SpecFlow\NOpenPage.Examples.SpecFlow.csproj --configuration %CONFIGURATION%
+  - cmd: dotnet test spesc\NOpenPage.Specs\NOpenPage.Specs.csproj --configuration %CONFIGURATION%
+  - cmd: dotnet test examples\NOpenPage.Examples.SpecFlow\NOpenPage.Examples.SpecFlow.csproj --configuration %CONFIGURATION%
 
 artifacts:
   - path: nupkgs\*.nupkg

@@ -1,6 +1,6 @@
 using System;
-using NUnit.Framework;
 using OpenQA.Selenium;
+using Xunit;
 
 namespace NOpenPage.Examples.SpecFlow.Pages.NuGetOrg
 {
@@ -15,11 +15,11 @@ namespace NOpenPage.Examples.SpecFlow.Pages.NuGetOrg
             try
             {
                 Element.Click();
-                Assert.IsTrue(false, "Custom element resolver was not executed.");
+                Assert.True(false, "Custom element resolver was not executed.");
             }
             catch (InvalidOperationException ex)
             {
-                Assert.AreEqual("ResolvedWithException", ex.Message, "Unexpected exception thrown.");
+                Assert.Equal("ResolvedWithException", ex.Message);
             }
         }
     }

@@ -17,18 +17,23 @@ namespace NOpenPage.Examples.SpecFlow.Features
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "2.3.2.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("NuGetOrgSearch")]
-    public partial class NuGetOrgSearchFeature
+    public partial class NuGetOrgSearchFeature : Xunit.IClassFixture<NuGetOrgSearchFeature.FixtureData>, System.IDisposable
     {
         
-        private TechTalk.SpecFlow.ITestRunner testRunner;
+        private static TechTalk.SpecFlow.ITestRunner testRunner;
+        
+        private Xunit.Abstractions.ITestOutputHelper _testOutputHelper;
         
 #line 1 "NuGetSearch.feature"
 #line hidden
         
-        [NUnit.Framework.OneTimeSetUpAttribute()]
-        public virtual void FeatureSetup()
+        public NuGetOrgSearchFeature(NuGetOrgSearchFeature.FixtureData fixtureData, Xunit.Abstractions.ITestOutputHelper testOutputHelper)
+        {
+            this._testOutputHelper = testOutputHelper;
+            this.TestInitialize();
+        }
+        
+        public static void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "NuGetOrgSearch", "\tLet\'s click through the nuget home page to provide a simple example of NOpenPage" +
@@ -36,19 +41,16 @@ namespace NOpenPage.Examples.SpecFlow.Features
             testRunner.OnFeatureStart(featureInfo);
         }
         
-        [NUnit.Framework.OneTimeTearDownAttribute()]
-        public virtual void FeatureTearDown()
+        public static void FeatureTearDown()
         {
             testRunner.OnFeatureEnd();
             testRunner = null;
         }
         
-        [NUnit.Framework.SetUpAttribute()]
         public virtual void TestInitialize()
         {
         }
         
-        [NUnit.Framework.TearDownAttribute()]
         public virtual void ScenarioTearDown()
         {
             testRunner.OnScenarioEnd();
@@ -57,6 +59,7 @@ namespace NOpenPage.Examples.SpecFlow.Features
         public virtual void ScenarioSetup(TechTalk.SpecFlow.ScenarioInfo scenarioInfo)
         {
             testRunner.OnScenarioStart(scenarioInfo);
+            testRunner.ScenarioContext.ScenarioContainer.RegisterInstanceAs<Xunit.Abstractions.ITestOutputHelper>(_testOutputHelper);
         }
         
         public virtual void ScenarioCleanup()
@@ -64,8 +67,14 @@ namespace NOpenPage.Examples.SpecFlow.Features
             testRunner.CollectScenarioErrors();
         }
         
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Click through the nuget home page for Selenium")]
+        void System.IDisposable.Dispose()
+        {
+            this.ScenarioTearDown();
+        }
+        
+        [Xunit.FactAttribute(DisplayName="Click through the nuget home page for Selenium")]
+        [Xunit.TraitAttribute("FeatureTitle", "NuGetOrgSearch")]
+        [Xunit.TraitAttribute("Description", "Click through the nuget home page for Selenium")]
         public virtual void ClickThroughTheNugetHomePageForSelenium()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Click through the nuget home page for Selenium", ((string[])(null)));
@@ -81,8 +90,9 @@ this.ScenarioSetup(scenarioInfo);
             this.ScenarioCleanup();
         }
         
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Click through the nuget home page for NOpenPage")]
+        [Xunit.FactAttribute(DisplayName="Click through the nuget home page for NOpenPage")]
+        [Xunit.TraitAttribute("FeatureTitle", "NuGetOrgSearch")]
+        [Xunit.TraitAttribute("Description", "Click through the nuget home page for NOpenPage")]
         public virtual void ClickThroughTheNugetHomePageForNOpenPage()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Click through the nuget home page for NOpenPage", ((string[])(null)));
@@ -98,8 +108,9 @@ this.ScenarioSetup(scenarioInfo);
             this.ScenarioCleanup();
         }
         
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Custom WebElementResolver")]
+        [Xunit.FactAttribute(DisplayName="Custom WebElementResolver")]
+        [Xunit.TraitAttribute("FeatureTitle", "NuGetOrgSearch")]
+        [Xunit.TraitAttribute("Description", "Custom WebElementResolver")]
         public virtual void CustomWebElementResolver()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Custom WebElementResolver", ((string[])(null)));
@@ -111,6 +122,22 @@ this.ScenarioSetup(scenarioInfo);
     testRunner.Then("it should use custom web element resolver for configured page control", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
+        }
+        
+        [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "2.3.2.0")]
+        [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+        public class FixtureData : System.IDisposable
+        {
+            
+            public FixtureData()
+            {
+                NuGetOrgSearchFeature.FeatureSetup();
+            }
+            
+            void System.IDisposable.Dispose()
+            {
+                NuGetOrgSearchFeature.FeatureTearDown();
+            }
         }
     }
 }

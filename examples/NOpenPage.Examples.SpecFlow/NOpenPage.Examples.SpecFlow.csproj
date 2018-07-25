@@ -4,17 +4,26 @@
     <TargetFramework>net471</TargetFramework>
   </PropertyGroup>
 
+  <PropertyGroup>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <WarningsAsErrors />
+  </PropertyGroup>
+
   <ItemGroup>
-    <PackageReference Include="NUnit" Version="3.10.1" />
+	<PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.7.2" />
+	<PackageReference Include="Microsoft.TestPlatform.TestHost" Version="15.7.2" />
     <PackageReference Include="Selenium.Support" Version="3.13.1" />
     <PackageReference Include="Selenium.WebDriver" Version="3.13.1" />
     <PackageReference Include="SpecFlow" Version="2.3.2" />
-    <PackageReference Include="SpecFlow.NUnit" Version="2.3.2" />
+    <PackageReference Include="SpecFlow.xUnit" Version="2.3.2" />
+	<PackageReference Include="xunit" Version="2.3.1" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.3.1" />
     <PackageReference Include="WebDriver.ChromeDriver.win32" Version="2.40.0" />
+    <DotNetCliToolReference Include="dotnet-xunit" Version="2.3.1" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\NOpenPage\NOpenPage.csproj" />
+    <ProjectReference Include="..\..\src\NOpenPage\NOpenPage.csproj" />
   </ItemGroup>
 
   <ItemGroup>

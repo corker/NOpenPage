@@ -1,6 +1,6 @@
 ﻿using System.Linq;
-using NUnit.Framework;
 using OpenQA.Selenium;
+using Xunit;
 
 namespace NOpenPage.Examples.SpecFlow.Pages.NuGetOrg
 {
@@ -23,10 +23,10 @@ namespace NOpenPage.Examples.SpecFlow.Pages.NuGetOrg
         public void AssertSearchResultsCountIs(int count)
         {
             var countByControl = Control<SearchResultList>().Items.Length;
-            Assert.AreEqual(count, countByControl);
+            Assert.Equal(count, countByControl);
 
             var countByControls = Controls<SearchResultListItem>(By.ClassName("package")).Count();
-            Assert.AreEqual(count, countByControls);
+            Assert.Equal(count, countByControls);
         }
 
         public void AssertCustomWebElementResolverExecuted()

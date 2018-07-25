@@ -1,5 +1,8 @@
 ﻿using System;
+using NSpec;
 using OpenQA.Selenium;
+using Xunit;
+using Xunit.Abstractions;
 
 namespace NOpenPage.Specs
 {
@@ -55,6 +58,22 @@ namespace NOpenPage.Specs
         {
             public TestPage(IPageContext context) : base(context)
             {
+            }
+        }
+
+        public class Run
+        {
+            public Run(ITestOutputHelper helper)
+            {
+                _helper = helper;
+            }
+
+            private readonly ITestOutputHelper _helper;
+
+            [Fact]
+            public void Specs()
+            {
+                _helper.Run<describe_Browser>();
             }
         }
     }

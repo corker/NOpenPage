@@ -4,12 +4,21 @@ using FluentAssertions;
 using NOpenPage.Configuration;
 using NSpec;
 using OpenQA.Selenium;
+using Xunit;
+using Xunit.Abstractions;
 
 namespace NOpenPage.Specs
 {
     [Tag("describe_BrowserContext")]
     public class describe_BrowserContextBuilder : nspec
     {
+        private static readonly IWebDriver ExpectedWebDriver = A.Fake<IWebDriver>(x => x.Strict());
+        private BrowserContext _browserContext;
+        private WebDriverResolver _driverResolver;
+
+        private BrowserContextBuilder _target;
+        private IWebDriver _webDriver;
+
         public void before_each()
         {
             _target = new BrowserContextBuilder();
@@ -44,16 +53,28 @@ namespace NOpenPage.Specs
                 context["when web driver resolved"] = () =>
                 {
                     beforeAll = () => _driverResolver = () => ExpectedWebDriver;
-                    it["should return expected web driver"] = () => { _webDriver.Should().BeSameAs(ExpectedWebDriver); };
+                    it["should return expected web driver"] = () =>
+                    {
+                        _webDriver.Should().BeSameAs(ExpectedWebDriver);
+                    };
                 };
             };
         }
 
-        private BrowserContextBuilder _target;
-        private BrowserContext _browserContext;
-        private WebDriverResolver _driverResolver;
-        private IWebDriver _webDriver;
+        public class Run
+        {
+            public Run(ITestOutputHelper helper)
+            {
+                _helper = helper;
+            }
 
-        private static readonly IWebDriver ExpectedWebDriver = A.Fake<IWebDriver>(x => x.Strict());
+            private readonly ITestOutputHelper _helper;
+
+            [Fact]
+            public void Specs()
+            {
+                _helper.Run<describe_BrowserContextBuilder>();
+            }
+        }
     }
 }

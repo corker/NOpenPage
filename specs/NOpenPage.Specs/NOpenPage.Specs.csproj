@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net471</TargetFramework>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <WarningsAsErrors />
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FakeItEasy" Version="4.7.1" />
+    <PackageReference Include="FluentAssertions" Version="5.4.1" />
+	<PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.7.2" />
+	<PackageReference Include="Microsoft.TestPlatform.TestHost" Version="15.7.2" />
+	<PackageReference Include="xunit" Version="2.3.1" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.3.1" />
+    <PackageReference Include="nspec" Version="3.0.7" />
+    <DotNetCliToolReference Include="dotnet-xunit" Version="2.3.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\NOpenPage\NOpenPage.csproj" />
+  </ItemGroup>
+
+</Project>
