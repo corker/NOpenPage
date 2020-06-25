@@ -8,7 +8,15 @@
     <PackageTags>Selenium;WebDriver;PageObject;browser;automation</PackageTags>
     <PackageLicenseUrl>https://raw.githubusercontent.com/corker/NOpenPage/master/LICENSE</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/corker/NOpenPage</PackageProjectUrl>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" />
+  </ItemGroup>
+
 
   <!-- common NuGet package refs that affect all projects -->
   <ItemGroup>
